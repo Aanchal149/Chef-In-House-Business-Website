@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Detail</title>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background-color: #f2f6fc;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background: #040445;
+      color: #f0b70b;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      font-size: 1.8em;
+      font-style: italic;
+      font-weight: bold;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav a {
+      margin: 0 1em;
+      color: #f0b70b;
+      text-decoration: none;
+    }
+
+    .product-detail {
+      max-width: 700px;
+      width: 100%;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .gallery img {
+      width: 150px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .price {
+      font-weight: bold;
+      color: #6a4f4b;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .add-to-cart {
+      background: #090877;
+      color: #f0b70b;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 2rem;
+    }
+
+    .review-section {
+      text-align: left;
+      margin-top: 2rem;
+    }
+
+    .review-section h2 {
+      margin-bottom: 1rem;
+    }
+
+    .review-section form textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    .review-section button {
+      background: #090877;
+      color: #f0b70b;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #reviewList p {
+      background: #f7f7f7;
+      padding: 10px;
+      border-radius: 6px;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Chef In House</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div>
+      <span>🔍</span>
+      <span>👤</span>
+      <span>🛍</span>
+    </div>
+  </header>
+
+  <main class="product-detail">
+    <h1 id="productTitle">Whole Wheat Sooji Mathri</h1>
+    <div class="gallery" id="productGallery">
+      <img src="images/paneer.jpg" alt="Mathri" />
+      <img src="images/paneer2.jpg" alt="Mathri Close-up" />
+    </div>
+
+    <div id="productDescription">
+      <p>
+        Mathri is a traditional North Indian snack, especially popular in Rajasthan, known for its crispy texture and rich, spiced flavor. Made from a simple dough of:
+      </p>
+      <ol>
+        <li>Whole Wheat Flour</li>
+        <li>Carom seeds (Ajwain)</li>
+        <li>Black Pepper</li>
+        <li>Salt</li>
+        <li>Groundnut Oil (For Frying Too)</li>
+      </ol>
+      <p>
+        Mathris are deep-fried until golden and flaky — perfect for festive occasions or chai time.
+      </p>
+    </div>
+
+    <p class="price" id="productPrice">Price: ₹400</p>
+    <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+
+    <section class="review-section">
+      <h2>Reviews</h2>
+      <form id="reviewForm">
+        <textarea id="reviewInput" placeholder="Write your review..." required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="reviewList"></div>
+    </section>
+  </main>
+
+  <script>
+    const productName = "Whole Wheat Sooji Mathri";
+
+    // Review System using localStorage
+    const reviewKey = "reviews_" + productName;
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewInput = document.getElementById('reviewInput');
+    const reviewList = document.getElementById('reviewList');
+
+    function loadReviews() {
+      const stored = JSON.parse(localStorage.getItem(reviewKey)) || [];
+      reviewList.innerHTML = "";
+      stored.forEach(review => {
+        const p = document.createElement('p');
+        p.textContent = review;
+        reviewList.appendChild(p);
+      });
+    }
+
+    reviewForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const review = reviewInput.value.trim();
+      if (review) {
+        const stored = JSON.parse(localStorage.getItem(reviewKey)) || [];
+        stored.push(review);
+        localStorage.setItem(reviewKey, JSON.stringify(stored));
+        reviewInput.value = "";
+        loadReviews();
+      }
+    });
+
+    function addToCart() {
+      alert(`${productName} added to cart!`);
+      // You can extend this to use localStorage for cart items
+    }
+
+    loadReviews();
+  </script>
+
+</body>
+</html>

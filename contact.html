@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">Chef In House</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div>
+      <span>🔍</span>
+      <span>👤</span>
+      <span>🛍</span>
+    </div>
+  </header>
+
+  <main>
+    <form id="contactForm">
+      <h3>CONTACT US</h>
+      <input type="text" id="userName" placeholder="Your Name" required />
+      <input type="email" id="userEmail" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </main>
+
+  <script src="script/contact.js"></script>
+</body>
+</html>

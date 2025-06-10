@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catalog | Chef In House</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Animated top bar -->
+  <div class="redonraw-animation-bar"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="logo">Chef In House</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="catalog.html" class="active">Catalog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div>
+      <span>🔍</span>
+      <span>👤</span>
+      <span>🛍</span>
+    </div>
+  </header>
+
+  <main class="catalog-page">
+    <h1>Our Catalog</h1>
+
+    <!-- Categories -->
+    <div class="categories">
+      <button onclick="filterCategory('all')">All</button>
+      <button onclick="filterCategory('mathri')">Mathri</button>
+      <button onclick="filterCategory('dry')">Dry Snacks</button>
+      <button onclick="filterCategory('starters')">Starters</button>
+      <button onclick="filterCategory('main')">Main Course</button>
+      <button onclick="filterCategory('dessert')">Desserts</button>
+    </div>
+    <!-- MATHRI -->
+    <div class="product-grid" id="productGrid">
+      <a href="product.html?name=Whole%20Wheat%20Sooji%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Whole Wheat Mathri" />
+        <h3>Whole Wheat Sooji Mathri</h3>
+        <p>₹400</p>
+      </a>
+      <a href="product.html?name=Crispy%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Crispy Mathri" />
+        <h3>Crispy Mathri</h3>
+        <p>₹400</p>
+      </a>
+      <a href="product.html?name=Onion%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Onion Mathri" />
+        <h3>Onion Mathri</h3>
+        <p>₹450</p>
+      </a>
+      <a href="product.html?name=Oats%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Oats Mathri" />
+        <h3>Oats Mathri</h3>
+        <p>₹500</p>
+      </a>
+      <a href="product.html?name=Masala%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Masala Mathri" />
+        <h3>Masala Mathri</h3>
+        <p>₹450</p>
+      </a>
+      <a href="product.html?name=Acchari%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Acchari Mathri" />
+        <h3>Acchari Mathri</h3>
+        <p>₹450</p>
+      </a>
+      <a href="product.html?name=Stuff Acchari%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Stuff Acchari Mathri" />
+        <h3>Stuff Acchari Mathri</h3>
+        <p>₹400</p>
+      </a>
+      <a href="product.html?name=Layered%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Layered Mathri" />
+        <h3>Layered Mathri</h3>
+        <p>₹400</p>
+      </a>
+      <a href="product.html?name=Spinach%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Spinach Mathri" />
+        <h3>Spinach Mathri</h3>
+        <p>₹400</p>
+      </a>
+       <a href="product.html?name=Beetroot%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Beetroot Mathri" />
+        <h3>Beetroot Mathri</h3>
+        <p>₹400</p>
+      </a>
+       <a href="product.html?name=Moong%20Dal%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Moong Dal Mathri" />
+        <h3>Moong Dal Mathri</h3>
+        <p>₹400</p>
+      </a>
+       <a href="product.html?name=Kastori%20Methi%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Kastori Methi Mathri" />
+        <h3>Kastori Methi Mathri</h3>
+        <p>₹400</p>
+      </a>
+       <a href="product.html?name=Italian%20Mathri" class="product-card" data-category="mathri">
+        <img src="images/paneer.jpg" alt="Italian Mathri" />
+        <h3>Italian Mathri</h3>
+        <p>₹400</p>
+      </a>
+
+      <a href="product.html?name=Jaipuri%20Hing%20Kachori" class="product-card" data-category="dry">
+        <img src="images/mixture.jpg" alt="Jaipuri Hing Kachori" />
+        <h3>Jaipuri Hing Kachori</h3>
+        <p>₹500</p>
+      </a>
+      <a href="product.html?name=Khasta%20Kachori" class="product-card" data-category="dry">
+        <img src="images/mixture.jpg" alt="Khasta kachori" />
+        <h3>Khasta kachori</h3>
+        <p>₹300</p>
+      </a>
+      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
+        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
+        <h3>Namkeen Mixture</h3>
+        <p>₹180</p>
+      </a>
+      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
+        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
+        <h3>Namkeen Mixture</h3>
+        <p>₹180</p>
+      </a>
+      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
+        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
+        <h3>Namkeen Mixture</h3>
+        <p>₹180</p>
+      </a>
+      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
+        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
+        <h3>Namkeen Mixture</h3>
+        <p>₹180</p>
+      </a>
+      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
+        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
+        <h3>Namkeen Mixture</h3>
+        <p>₹180</p>
+      </a>
+      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
+        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
+        <h3>Namkeen Mixture</h3>
+        <p>₹180</p>
+      </a>
+      <a href="product.html?name=Stuffed%20Paratha" class="product-card" data-category="main">
+        <img src="images/paratha.jpg" alt="Stuffed Paratha" />
+        <h3>Stuffed Paratha</h3>
+        <p>₹250</p>
+      </a>
+
+      <a href="product.html?name=Chocolate%20Cake" class="product-card" data-category="dessert">
+        <img src="images/cake.jpg" alt="Chocolate Cake" />
+        <h3>Chocolate Cake</h3>
+        <p>₹350</p>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    function filterCategory(category) {
+      const cards = document.querySelectorAll(".product-card");
+      cards.forEach(card => {
+        const isMatch = card.dataset.category === category || category === 'all';
+        card.style.display = isMatch ? 'block' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>
