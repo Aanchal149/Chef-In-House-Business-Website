@@ -4,171 +4,388 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Catalog | Chef In House</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #fefefc;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #040445;
+      color: #f0b70b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+    }
+    .logo {
+      font-size: 1.8em;
+      font-style: italic;
+      font-weight: bold;
+      text-decoration: none;
+      color: inherit;
+    }
+    nav a {
+      margin: 0 1em;
+      color: #f0b70b;
+      text-decoration: none;
+      font-style: italic;
+    }
+    .header-animation-bar {
+      height: 6px;
+      background: linear-gradient(270deg, #e74c3c, #f1c40f, #3498db, #9b59b6, #1abc9c);
+      background-size: 800% 100%;
+      animation: slide 8s ease infinite;
+    }
+    @keyframes slide {
+      0% {background-position: 0% 0;}
+      50% {background-position: 100% 0;}
+      100% {background-position: 0% 0;}
+    }
+    .catalog-page {
+      padding: 2em;
+      text-align: center;
+    }
+    .categories {
+      margin: 1em 0;
+    }
+    .categories button {
+      background: #090877;
+      color: #f0b70b;
+      border: none;
+      padding: 10px 20px;
+      margin: 0.2em;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .product-card {
+      background: white;
+      padding: 1em;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .catalog-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .catalog-buttons .view-btn, .catalog-buttons button {
+      background: #090877;
+      color: #f0b70b;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
+<div class="header-animation-bar"></div>
+<header>
+  <a href="index.html" class="logo">Chef In House</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="catalog.html" class="active">Catalog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div>
+    <span onclick="alert('Search feature coming soon!')" style="color:white;cursor:pointer;">🔍</span>
+    <span onclick="alert('Login coming soon!')" style="color:white;cursor:pointer;">👤</span>
+    <span onclick="window.location.href='cart.html'" style="color:white;cursor:pointer;">🛍</span>
+  </div>
+</header>
 
-  <!-- Animated top bar -->
-  <div class="redonraw-animation-bar"></div>
+<main class="catalog-page">
+  <h1>Our Catalog</h1>
+  <div class="categories">
+    <button onclick="filterCategory('all')">All</button>
+    <button onclick="filterCategory('mathri')">Mathri</button>
+    <button onclick="filterCategory('dry')">Dry Snacks</button>
+    <button onclick="filterCategory('starters')">Starters</button>
+    <button onclick="filterCategory('main')">Main Course</button>
+    <button onclick="filterCategory('dessert')">Desserts</button>
+  </div>
 
-  <!-- Header -->
-  <header>
-    <a href="index.html" class="logo">Chef In House</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="catalog.html" class="active">Catalog</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div>
-      <span>🔍</span>
-      <span>👤</span>
-      <span>🛍</span>
+  <div class="product-grid" id="productGrid">
+    <div class="product-card" data-category="mathri">
+      <img src="images/paneer.jpg" alt="Whole Wheat Mathri" />
+      <h3>Whole Wheat Sooji Mathri</h3>
+      <p>₹400</p>
+      <div class="catalog-buttons">
+        <a href="product.html?name=Whole%20Wheat%20Sooji%20Mathri" class="view-btn">View</a>
+        <button onclick="addToCart('Whole Wheat Sooji Mathri', 400)">Add to Cart</button>
+      </div>
     </div>
-  </header>
-
-  <main class="catalog-page">
-    <h1>Our Catalog</h1>
-
-    <!-- Categories -->
-    <div class="categories">
-      <button onclick="filterCategory('all')">All</button>
-      <button onclick="filterCategory('mathri')">Mathri</button>
-      <button onclick="filterCategory('dry')">Dry Snacks</button>
-      <button onclick="filterCategory('starters')">Starters</button>
-      <button onclick="filterCategory('main')">Main Course</button>
-      <button onclick="filterCategory('dessert')">Desserts</button>
+    <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Crispy Mathri" />
+    <h3>Crispy Mathri</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Crispy%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Crispy Mathri', 400)">Add to Cart</button>
     </div>
-    <!-- MATHRI -->
-    <div class="product-grid" id="productGrid">
-      <a href="product.html?name=Whole%20Wheat%20Sooji%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Whole Wheat Mathri" />
-        <h3>Whole Wheat Sooji Mathri</h3>
-        <p>₹400</p>
-      </a>
-      <a href="product.html?name=Crispy%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Crispy Mathri" />
-        <h3>Crispy Mathri</h3>
-        <p>₹400</p>
-      </a>
-      <a href="product.html?name=Onion%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Onion Mathri" />
-        <h3>Onion Mathri</h3>
-        <p>₹450</p>
-      </a>
-      <a href="product.html?name=Oats%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Oats Mathri" />
-        <h3>Oats Mathri</h3>
-        <p>₹500</p>
-      </a>
-      <a href="product.html?name=Masala%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Masala Mathri" />
-        <h3>Masala Mathri</h3>
-        <p>₹450</p>
-      </a>
-      <a href="product.html?name=Acchari%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Acchari Mathri" />
-        <h3>Acchari Mathri</h3>
-        <p>₹450</p>
-      </a>
-      <a href="product.html?name=Stuff Acchari%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Stuff Acchari Mathri" />
-        <h3>Stuff Acchari Mathri</h3>
-        <p>₹400</p>
-      </a>
-      <a href="product.html?name=Layered%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Layered Mathri" />
-        <h3>Layered Mathri</h3>
-        <p>₹400</p>
-      </a>
-      <a href="product.html?name=Spinach%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Spinach Mathri" />
-        <h3>Spinach Mathri</h3>
-        <p>₹400</p>
-      </a>
-       <a href="product.html?name=Beetroot%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Beetroot Mathri" />
-        <h3>Beetroot Mathri</h3>
-        <p>₹400</p>
-      </a>
-       <a href="product.html?name=Moong%20Dal%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Moong Dal Mathri" />
-        <h3>Moong Dal Mathri</h3>
-        <p>₹400</p>
-      </a>
-       <a href="product.html?name=Kastori%20Methi%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Kastori Methi Mathri" />
-        <h3>Kastori Methi Mathri</h3>
-        <p>₹400</p>
-      </a>
-       <a href="product.html?name=Italian%20Mathri" class="product-card" data-category="mathri">
-        <img src="images/paneer.jpg" alt="Italian Mathri" />
-        <h3>Italian Mathri</h3>
-        <p>₹400</p>
-      </a>
-
-      <a href="product.html?name=Jaipuri%20Hing%20Kachori" class="product-card" data-category="dry">
-        <img src="images/mixture.jpg" alt="Jaipuri Hing Kachori" />
-        <h3>Jaipuri Hing Kachori</h3>
-        <p>₹500</p>
-      </a>
-      <a href="product.html?name=Khasta%20Kachori" class="product-card" data-category="dry">
-        <img src="images/mixture.jpg" alt="Khasta kachori" />
-        <h3>Khasta kachori</h3>
-        <p>₹300</p>
-      </a>
-      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
-        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
-        <h3>Namkeen Mixture</h3>
-        <p>₹180</p>
-      </a>
-      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
-        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
-        <h3>Namkeen Mixture</h3>
-        <p>₹180</p>
-      </a>
-      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
-        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
-        <h3>Namkeen Mixture</h3>
-        <p>₹180</p>
-      </a>
-      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
-        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
-        <h3>Namkeen Mixture</h3>
-        <p>₹180</p>
-      </a>
-      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
-        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
-        <h3>Namkeen Mixture</h3>
-        <p>₹180</p>
-      </a>
-      <a href="product.html?name=Namkeen%20Mixture" class="product-card" data-category="dry">
-        <img src="images/mixture.jpg" alt="Namkeen Mixture" />
-        <h3>Namkeen Mixture</h3>
-        <p>₹180</p>
-      </a>
-      <a href="product.html?name=Stuffed%20Paratha" class="product-card" data-category="main">
-        <img src="images/paratha.jpg" alt="Stuffed Paratha" />
-        <h3>Stuffed Paratha</h3>
-        <p>₹250</p>
-      </a>
-
-      <a href="product.html?name=Chocolate%20Cake" class="product-card" data-category="dessert">
-        <img src="images/cake.jpg" alt="Chocolate Cake" />
-        <h3>Chocolate Cake</h3>
-        <p>₹350</p>
-      </a>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Onion Mathri" />
+    <h3>Onion Mathri</h3>
+    <p>₹450</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Onion%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Onion Mathri', 450)">Add to Cart</button>
     </div>
-  </main>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Oats Mathri" />
+    <h3>Oats Mathri</h3>
+    <p>₹500</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Oats%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Oats Mathri', 500)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Masala Mathri" />
+    <h3>Masala Mathri</h3>
+    <p>₹450</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Masala%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Masala Mathri', 450)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Acchari Mathri" />
+    <h3>Acchari Mathri</h3>
+    <p>₹450</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Acchari%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Acchari Mathri', 450)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Stuff Acchari Mathri" />
+    <h3>Stuff Acchari Mathri</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Stuff%20Acchari%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Stuff Acchari Mathri', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Layered Mathri" />
+    <h3>Layered Mathri</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Layered%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Layered Mathri', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Spinach Mathri" />
+    <h3>Spinach Mathri</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Spinach%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Spinach Mathri', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Beetroot Mathri" />
+    <h3>Beetroot Mathri</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Beetroot%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Beetroot Mathri', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Moong Dal Mathri" />
+    <h3>Moong Dal Mathri</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Moong%20Dal%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Moong Dal Mathri', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Kastori Methi Mathri" />
+    <h3>Kastori Methi Mathri</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Kastori%20Methi%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Kastori Methi Mathri', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="mathri">
+    <img src="images/paneer.jpg" alt="Italian Mathri" />
+    <h3>Italian Mathri</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Italian%20Mathri" class="view-btn">View</a>
+      <button onclick="addToCart('Italian Mathri', 400)">Add to Cart</button>
+    </div>
+  </div>
 
-  <script>
-    function filterCategory(category) {
-      const cards = document.querySelectorAll(".product-card");
-      cards.forEach(card => {
-        const isMatch = card.dataset.category === category || category === 'all';
-        card.style.display = isMatch ? 'block' : 'none';
-      });
-    }
-  </script>
+  <!-- DRY SNACKS -->
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Jaipuri Hing Kachori" />
+    <h3>Jaipuri Hing Kachori</h3>
+    <p>₹500</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Jaipuri%20Hing%20Kachori" class="view-btn">View</a>
+      <button onclick="addToCart('Jaipuri Hing Kachori', 500)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Khasta kachori" />
+    <h3>Khasta kachori</h3>
+    <p>₹300</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Khasta%20Kachori" class="view-btn">View</a>
+      <button onclick="addToCart('Khasta Kachori', 300)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Masala Bites" />
+    <h3>Masala Bites</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Masala%20Bites" class="view-btn">View</a>
+      <button onclick="addToCart('Masala Bites', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Dal Sev" />
+    <h3>Dal Sev</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Dal%20Sev" class="view-btn">View</a>
+      <button onclick="addToCart('Dal Sev', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Besan Sev" />
+    <h3>Besan Sev</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Besan%20Sev" class="view-btn">View</a>
+      <button onclick="addToCart('Besan Sev', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Cornflakes Mixture" />
+    <h3>Cornflakes Mixture</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Cornflakes%20Mixture" class="view-btn">View</a>
+      <button onclick="addToCart('Cornflakes Mixture', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Cashew Chidva Mixture" />
+    <h3>Cashew Chidva Mixture</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Cashew%20Chidva%20Mixture" class="view-btn">View</a>
+      <button onclick="addToCart('Cashew Chidva Mixture', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Diet Namkeen" />
+    <h3>Diet Namkeen</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Diet%20Namkeen" class="view-btn">View</a>
+      <button onclick="addToCart('Diet Namkeen', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Jowar Ragi Chidva Mixture" />
+    <h3>Jowar Ragi Chidva Mixture</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Jowar%20Ragi%20Chidva%20Mixture" class="view-btn">View</a>
+      <button onclick="addToCart('Jowar Ragi Chidva Mixture', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Mix Trail Namkeen" />
+    <h3>Mix Trail Namkeen</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Mix%20Trail%20Namkeen" class="view-btn">View</a>
+      <button onclick="addToCart('Mix Trail Namkeen', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Oats Mixture" />
+    <h3>Oats Mixture</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Oats%20Mixture" class="view-btn">View</a>
+      <button onclick="addToCart('Oats Mixture', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Masala Peanuts" />
+    <h3>Masala Peanuts</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Masala%20Peanuts" class="view-btn">View</a>
+      <button onclick="addToCart('Masala Peanuts', 400)">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card" data-category="dry">
+    <img src="images/mixture.jpg" alt="Roasted Masala Kaju" />
+    <h3>Roasted Masala Kaju</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Roasted%20Masala%20Kaju" class="view-btn">View</a>
+      <button onclick="addToCart('Roasted Masala Kaju', 400)">Add to Cart</button>
+    </div>
+  </div>
 
+  <!-- MAIN COURSE -->
+  <div class="product-card" data-category="starters">
+    <img src=".jpg" alt="Mini Dabeli" />
+    <h3>Mini Dabeli</h3>
+    <p>₹400</p>
+    <div class="catalog-buttons">
+      <a href="product.html?name=Mini%20Dabeli" class="view-btn">View</a>
+      <button onclick="addToCart('Mini Dabeli', 400)">Add to Cart</button>
+    </div>
+  </div>
+  </div>
+</main>
+
+<script>
+  function filterCategory(category) {
+    const cards = document.querySelectorAll(".product-card");
+    cards.forEach(card => {
+      const isMatch = category === "all" || card.dataset.category === category;
+      card.style.display = isMatch ? "block" : "none";
+    });
+  }
+
+  function addToCart(name, price) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, quantity: 1 });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${name} added to cart!`);
+  }
+</script>
 </body>
 </html>

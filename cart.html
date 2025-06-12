@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart — Chef In House</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background-color: #f2f6fc;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    header {
+      background: #040445;
+      color: #f0b70b;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo, nav a {
+      color: #f0b70b;
+      text-decoration: none;
+      font-style: italic;
+    }
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #22067d;
+      font-style: italic;
+    }
+    .cart-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .item-details { flex: 1; display: flex; align-items: center; }
+    .item-details span { margin-left: 10px; }
+    .quantity-input {
+      width: 50px;
+      padding: 5px;
+      margin-right: 10px;
+      text-align: center;
+    }
+    .remove-btn {
+      background: #ff5c5c;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .remove-btn:hover { background: #c23b3b; }
+    .item-total { width: 80px; text-align: right; }
+    .total {
+      text-align: right;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: #090877;
+    }
+    .checkout-btn {
+      margin-top: 2rem;
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #090877;
+      color: #f0b70b;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .checkout-btn:hover { background: #05055c; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">Chef In House</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="catalog.html">Catalog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<h1>Your Shopping Cart</h1>
+<div class="cart-container" id="cartContainer"></div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function renderCart() {
+    const container = document.getElementById("cartContainer");
+    container.innerHTML = '';
+
+    if (cart.length === 0) {
+      container.innerHTML = "<p>Your cart is empty.</p>";
+      return;
+    }
+
+    let totalSum = 0;
+
+    cart.forEach((item, idx) => {
+      const itemTotal = item.price * (item.quantity || 1);
+      totalSum += itemTotal;
+
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.innerHTML = `
+        <div class="item-details">
+          <span>${item.name}</span>
+        </div>
+        <div>
+          <input type="number" min="1" value="${item.quantity || 1}" class="quantity-input"
+            onchange="updateQuantity(${idx}, this.value)" />
+        </div>
+        <div class="item-total">₹${itemTotal}</div>
+        <button class="remove-btn" onclick="removeItem(${idx})">Remove</button>
+      `;
+      container.appendChild(div);
+    });
+
+    const totalDiv = document.createElement("div");
+    totalDiv.className = "total";
+    totalDiv.textContent = `Total: ₹${totalSum}`;
+    container.appendChild(totalDiv);
+
+    const checkoutBtn = document.createElement("button");
+    checkoutBtn.className = "checkout-btn";
+    checkoutBtn.textContent = "Checkout via WhatsApp";
+    checkoutBtn.onclick = checkout;
+    container.appendChild(checkoutBtn);
+  }
+
+  function updateQuantity(index, qty) {
+    qty = parseInt(qty) || 1;
+    cart[index].quantity = qty;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  function checkout() {
+    if (!cart.length) return alert("Cart is empty");
+
+    let message = "New Order for Chef In House:\n";
+    cart.forEach(item => {
+      const qty = item.quantity || 1;
+      message += `- ${item.name} x${qty}: ₹${item.price * qty}\n`;
+    });
+    const total = cart.reduce((sum, it) => sum + (it.price * (it.quantity || 1)), 0);
+    message += `Total: ₹${total}`;
+
+    const url = "https://wa.me/919837023646?text=" + encodeURIComponent(message);
+    localStorage.removeItem("cart");
+    window.open(url, '_blank');
+    renderCart();
+  }
+
+  renderCart();
+</script>
+
+</body>
+</html>
